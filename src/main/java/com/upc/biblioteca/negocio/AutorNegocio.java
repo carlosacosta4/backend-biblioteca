@@ -1,0 +1,26 @@
+package com.upc.biblioteca.negocio;
+
+import com.upc.biblioteca.entidades.Autor;
+import com.upc.biblioteca.repositorio.IAutorRepositorio;
+import com.upc.biblioteca.repositorio.IUsuarioRepositorio;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public class AutorNegocio implements IAutorNegocio {
+
+    @Autowired
+    IAutorRepositorio repositorio;
+
+    @Override
+    public List<Autor> listar() {
+        return repositorio.findAll().stream().toList();
+    }
+
+    @Override
+    public Autor registrar(Autor autor) {
+        return repositorio.save(autor);
+    }
+}
