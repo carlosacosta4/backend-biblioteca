@@ -1,8 +1,8 @@
-package com.upc.biblioteca.service;
+package com.upc.biblioteca.service.impl;
 
 import com.upc.biblioteca.entity.Rol;
 import com.upc.biblioteca.repository.IRolRepositorio;
-import com.upc.biblioteca.service.impl.IRolNegocio;
+import com.upc.biblioteca.service.IRolNegocio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

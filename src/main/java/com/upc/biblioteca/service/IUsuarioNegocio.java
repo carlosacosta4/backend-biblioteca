@@ -1,4 +1,4 @@
-package com.upc.biblioteca.service.impl;
+package com.upc.biblioteca.service;
 
 import com.upc.biblioteca.entity.Usuario;
 

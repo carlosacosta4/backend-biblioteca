@@ -27,13 +27,9 @@ public class Prestamo {
 
     private LocalDate fechaPrestamo;
 
-    private LocalDate fechaDevolucionEsperada;
-
-    private LocalDate fechaDevolucionReal;
+    private LocalDate fechaDevolucion;
 
     @Enumerated(EnumType.STRING)
     private PrestamoEstado estado;
 
-    @Column(length = 500)
-    private String observaciones;
 }

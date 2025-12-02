@@ -1,8 +1,8 @@
-package com.upc.biblioteca.service;
+package com.upc.biblioteca.service.impl;
 
 import com.upc.biblioteca.entity.Autor;
 import com.upc.biblioteca.repository.IAutorRepositorio;
-import com.upc.biblioteca.service.impl.IAutorNegocio;
+import com.upc.biblioteca.service.IAutorNegocio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

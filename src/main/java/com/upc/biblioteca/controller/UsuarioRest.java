@@ -2,7 +2,7 @@ package com.upc.biblioteca.controller;
 
 import com.upc.biblioteca.dto.UsuarioDto;
 import com.upc.biblioteca.entity.Usuario;
-import com.upc.biblioteca.service.impl.IUsuarioNegocio;
+import com.upc.biblioteca.service.IUsuarioNegocio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

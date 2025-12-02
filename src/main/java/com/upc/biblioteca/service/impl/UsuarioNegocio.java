@@ -1,8 +1,8 @@
-package com.upc.biblioteca.service;
+package com.upc.biblioteca.service.impl;
 
 import com.upc.biblioteca.entity.Usuario;
 import com.upc.biblioteca.repository.IUsuarioRepositorio;
-import com.upc.biblioteca.service.impl.IUsuarioNegocio;
+import com.upc.biblioteca.service.IUsuarioNegocio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
