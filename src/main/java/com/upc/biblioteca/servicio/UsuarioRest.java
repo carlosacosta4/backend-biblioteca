@@ -1,5 +1,7 @@
 package com.upc.biblioteca.servicio;
 
+import com.upc.biblioteca.dto.LoginRequestDto;
+import com.upc.biblioteca.dto.LoginResponseDto;
 import com.upc.biblioteca.entidades.Usuario;
 import com.upc.biblioteca.negocio.IUsuarioNegocio;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,4 +30,14 @@ public class UsuarioRest {
             e.printStackTrace();
         }
     }
+
+    @PostMapping("/login")
+    public LoginResponseDto login(@RequestBody LoginRequestDto request) {
+
+        LoginResponseDto res = lbUsuarioNegocio.login(request.getCorreoElectronico(), request.getPassword());
+
+        return res;
+    }
+
+
 }
