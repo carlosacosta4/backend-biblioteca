@@ -1,13 +1,13 @@
 package com.upc.biblioteca.dto;
 
 import com.upc.biblioteca.entity.Autor;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-@Data
-@AllArgsConstructor
+@Getter
+@Setter
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class LibroDto {
     private String isbn;
     private String titulo;
