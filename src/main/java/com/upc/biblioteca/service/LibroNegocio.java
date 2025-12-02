@@ -23,4 +23,9 @@ public class LibroNegocio implements ILibroNegocio {
     public Libro registrar(Libro libro) {
         return repositorio.save(libro);
     }
+
+    @Override
+    public Libro buscarPorIsbn(String isbnLibro) {
+        return repositorio.findByIsbnLibro(isbnLibro).orElse(null);
+    }
 }

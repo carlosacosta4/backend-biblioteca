@@ -1,11 +1,13 @@
 package com.upc.biblioteca.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.upc.biblioteca.dto.LibroDto;
 import com.upc.biblioteca.entity.Libro;
 import com.upc.biblioteca.service.FileService;
 import com.upc.biblioteca.service.impl.ILibroNegocio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -45,4 +47,13 @@ public class LibroRest {
         }
     }
 
+    @GetMapping("/libro/isbn/{isbnLibro}")
+    public ResponseEntity<LibroDto> obtenerPorIsbn(@PathVariable String isbnLibro) {
+        Libro libro = lbLibroNegocio.buscarPorIsbn(isbnLibro);
+        if (libro == null) {
+            return ResponseEntity.notFound().build();
+        }
+        LibroDto dto = new LibroDto(libro.getIsbnLibro(), libro.getTituloLibro(), libro.getAutor());
+        return ResponseEntity.ok(dto);
+    }
 }
