@@ -23,4 +23,8 @@ public class UsuarioNegocio implements IUsuarioNegocio {
         return repositorio.save(usuario);
     }
 
+    @Override
+    public Usuario buscarPorDocumentoIdentidad(String documentoIdentidad) {
+        return repositorio.findByDocumentoIdentidad(documentoIdentidad).orElse(null);
+    }
 }

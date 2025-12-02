@@ -8,5 +8,5 @@ public interface IUsuarioNegocio {
 
     public List<Usuario> listar();
     public Usuario registrar(Usuario usuario);
-
+    Usuario buscarPorDocumentoIdentidad(String documentoIdentidad);
 }
