@@ -1,9 +1,7 @@
-package com.upc.biblioteca.servicio;
+package com.upc.biblioteca.controller;
 
 import com.upc.biblioteca.entidades.Autor;
-import com.upc.biblioteca.entidades.Usuario;
-import com.upc.biblioteca.negocio.IAutorNegocio;
-import com.upc.biblioteca.negocio.IUsuarioNegocio;
+import com.upc.biblioteca.service.impl.IAutorNegocio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

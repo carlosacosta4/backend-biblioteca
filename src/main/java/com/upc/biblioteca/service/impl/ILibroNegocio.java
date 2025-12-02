@@ -1,4 +1,4 @@
-package com.upc.biblioteca.negocio;
+package com.upc.biblioteca.service.impl;
 
 import com.upc.biblioteca.entidades.Libro;
 

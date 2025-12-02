@@ -1,7 +1,7 @@
-package com.upc.biblioteca.servicio;
+package com.upc.biblioteca.controller;
 
 import com.upc.biblioteca.entidades.Rol;
-import com.upc.biblioteca.negocio.IRolNegocio;
+import com.upc.biblioteca.service.impl.IRolNegocio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

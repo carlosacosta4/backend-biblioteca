@@ -1,12 +1,9 @@
-package com.upc.biblioteca.servicio;
+package com.upc.biblioteca.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.upc.biblioteca.entidades.Autor;
 import com.upc.biblioteca.entidades.Libro;
-import com.upc.biblioteca.negocio.FileService;
-import com.upc.biblioteca.negocio.IAutorNegocio;
-import com.upc.biblioteca.negocio.ILibroNegocio;
-import com.upc.biblioteca.repositorio.ILibroRepositorio;
+import com.upc.biblioteca.service.FileService;
+import com.upc.biblioteca.service.impl.ILibroNegocio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;

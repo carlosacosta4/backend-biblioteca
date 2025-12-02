@@ -1,4 +1,4 @@
-package com.upc.biblioteca.negocio;
+package com.upc.biblioteca.service;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
