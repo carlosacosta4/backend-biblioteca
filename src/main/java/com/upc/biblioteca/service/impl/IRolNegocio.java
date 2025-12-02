@@ -1,6 +1,6 @@
 package com.upc.biblioteca.service.impl;
 
-import com.upc.biblioteca.entidades.Rol;
+import com.upc.biblioteca.entity.Rol;
 
 import java.util.List;
 

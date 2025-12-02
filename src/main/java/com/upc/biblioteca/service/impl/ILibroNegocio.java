@@ -1,6 +1,6 @@
 package com.upc.biblioteca.service.impl;
 
-import com.upc.biblioteca.entidades.Libro;
+import com.upc.biblioteca.entity.Libro;
 
 import java.util.List;
 

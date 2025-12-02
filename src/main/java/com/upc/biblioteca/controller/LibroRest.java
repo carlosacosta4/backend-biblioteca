@@ -1,7 +1,7 @@
 package com.upc.biblioteca.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.upc.biblioteca.entidades.Libro;
+import com.upc.biblioteca.entity.Libro;
 import com.upc.biblioteca.service.FileService;
 import com.upc.biblioteca.service.impl.ILibroNegocio;
 import org.springframework.beans.factory.annotation.Autowired;

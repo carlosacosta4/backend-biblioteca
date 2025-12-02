@@ -1,7 +1,6 @@
-package com.upc.biblioteca.repositorio;
+package com.upc.biblioteca.repository;
 
-import com.upc.biblioteca.entidades.Rol;
-import com.upc.biblioteca.entidades.Usuario;
+import com.upc.biblioteca.entity.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface IUsuarioRepositorio extends JpaRepository<Usuario, Long> {
