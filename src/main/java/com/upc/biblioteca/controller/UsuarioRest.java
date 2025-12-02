@@ -1,5 +1,7 @@
 package com.upc.biblioteca.controller;
 
+import com.upc.biblioteca.dto.LoginRequestDto;
+import com.upc.biblioteca.dto.LoginResponseDto;
 import com.upc.biblioteca.dto.UsuarioDto;
 import com.upc.biblioteca.entity.Usuario;
 import com.upc.biblioteca.service.IUsuarioNegocio;
@@ -45,4 +47,13 @@ public class UsuarioRest {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
+
+    @PostMapping("/login")
+    public LoginResponseDto login(@RequestBody LoginRequestDto request) {
+
+        LoginResponseDto res = lbUsuarioNegocio.login(request.getCorreoElectronico(), request.getPassword());
+
+        return res;
+    }
+
 }
