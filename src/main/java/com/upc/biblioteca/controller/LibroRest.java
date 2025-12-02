@@ -2,6 +2,7 @@ package com.upc.biblioteca.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.upc.biblioteca.dto.LibroDto;
+import com.upc.biblioteca.dto.LibroListDto;
 import com.upc.biblioteca.entity.Libro;
 import com.upc.biblioteca.service.impl.FileService;
 import com.upc.biblioteca.service.ILibroNegocio;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api")
@@ -55,5 +57,24 @@ public class LibroRest {
         }
         LibroDto dto = new LibroDto(libro.getIsbnLibro(), libro.getTituloLibro(), libro.getAutor());
         return ResponseEntity.ok(dto);
+    }
+
+    @GetMapping("/libros/catalogo")
+    public ResponseEntity<List<LibroListDto>> listarLibros() {
+        List<LibroListDto> lista = lbLibroNegocio.listar().stream()
+                .map(l -> new LibroListDto(
+                        l.getRutaImagenLibro(),
+                        l.getTituloLibro(),
+                        l.getAutor() != null
+                                ? (safeTrim(l.getAutor().getNombreAutor()) + " " + safeTrim(l.getAutor().getApellidoAutor())).trim()
+                                : null,
+                        l.getIsbnLibro()
+                ))
+                .collect(Collectors.toList());
+        return ResponseEntity.ok(lista);
+    }
+
+    private String safeTrim(String s) {
+        return s == null ? "" : s.trim();
     }
 }
