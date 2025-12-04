@@ -1,5 +1,6 @@
 package com.upc.biblioteca.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.upc.biblioteca.enums.PrestamoEstado;
 import jakarta.persistence.*;
 import lombok.*;

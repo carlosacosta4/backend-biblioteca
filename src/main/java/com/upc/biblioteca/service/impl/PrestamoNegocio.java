@@ -1,5 +1,7 @@
 package com.upc.biblioteca.service.impl;
 
+import com.upc.biblioteca.dto.PrestamoDto;
+import com.upc.biblioteca.enums.PrestamoEstado;
 import com.upc.biblioteca.service.IPrestamoNegocio;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Service
 public class PrestamoNegocio implements IPrestamoNegocio {
@@ -41,10 +44,23 @@ public class PrestamoNegocio implements IPrestamoNegocio {
                 .libro(libro)
                 .fechaPrestamo(fechaPrestamo)
                 .fechaDevolucion(fechaDevolucion)
+                .estado(PrestamoEstado.ACTIVO)
                 .build();
 
         return prestamoRepositorio.save(prestamo);
     }
 
+    @Override
+    public List<PrestamoDto> obtenerPrestamosPorDocumento(String documentoIdentidad) throws Exception {
+        List<Prestamo> prestamos = prestamoRepositorio.findByUsuarioDocumento(documentoIdentidad);
+        return prestamos.stream().map(prestamo -> new PrestamoDto(
+                prestamo.getIdPrestamo(),
+                prestamo.getUsuario().getDocumentoIdentidad(),
+                prestamo.getLibro().getTituloLibro(),
+                prestamo.getFechaPrestamo(),
+                prestamo.getFechaDevolucion(),
+                prestamo.getEstado()
+        )).toList();
+    }
 }
 
