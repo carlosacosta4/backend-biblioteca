@@ -46,6 +46,15 @@ public class PrestamoRest {
         }
     }
 
+    @PutMapping("/prestamo/devolver")
+    public ResponseEntity<?> devolverPrestamo(@RequestBody PrestamoRequestDto request) {
+        try {
+            prestamoNegocio.devolverPrestamo(request.getDocumentoIdentidad(), request.getIsbnLibro());
+            return ResponseEntity.ok("Libro devuelto correctamente");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
+    }
 }
 
 

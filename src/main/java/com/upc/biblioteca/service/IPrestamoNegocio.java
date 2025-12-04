@@ -11,4 +11,5 @@ public interface IPrestamoNegocio {
 
     List<PrestamoDto> obtenerPrestamosPorDocumento(String documentoIdentidad) throws Exception;
     void actualizarEstadoPrestamos();
+    void devolverPrestamo(String documentoIdentidad, String isbnLibro) throws Exception;
 }

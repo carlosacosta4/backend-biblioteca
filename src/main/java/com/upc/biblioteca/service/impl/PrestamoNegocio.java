@@ -73,5 +73,19 @@ public class PrestamoNegocio implements IPrestamoNegocio {
             }
         });
     }
+
+    // Java
+    @Override
+    public void devolverPrestamo(String documentoIdentidad, String isbnLibro) throws Exception {
+        List<Prestamo> prestamos = prestamoRepositorio.findByUsuarioDocumento(documentoIdentidad);
+        Prestamo prestamo = prestamos.stream()
+                .filter(p -> p.getLibro().getIsbnLibro().equals(isbnLibro) &&
+                        (p.getEstado() == PrestamoEstado.ACTIVO || p.getEstado() == PrestamoEstado.VENCIDO))
+                .findFirst()
+                .orElseThrow(() -> new Exception("No existe préstamo activo o vencido para ese usuario y libro"));
+
+        prestamo.setEstado(PrestamoEstado.DEVUELTO);
+        prestamoRepositorio.save(prestamo);
+    }
 }
 
