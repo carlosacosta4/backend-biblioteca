@@ -1,7 +1,8 @@
 package com.upc.biblioteca.enums;
 
-public enum PrestamoEstado {
+public enum LibroEstado {
     VENCIDO,
     ACTIVO,
-    DEVUELTO
+    DEVUELTO,
+    RESERVADO
 }
