@@ -62,5 +62,16 @@ public class PrestamoNegocio implements IPrestamoNegocio {
                 prestamo.getEstado()
         )).toList();
     }
+
+    @Override
+    public void actualizarEstadoPrestamos() {
+        List<Prestamo> prestamos = prestamoRepositorio.findAll();
+        prestamos.forEach(prestamo -> {
+            if (prestamo.getEstado() == PrestamoEstado.ACTIVO && prestamo.getFechaDevolucion().isBefore(LocalDate.now())) {
+                prestamo.setEstado(PrestamoEstado.VENCIDO);
+                prestamoRepositorio.save(prestamo);
+            }
+        });
+    }
 }
 

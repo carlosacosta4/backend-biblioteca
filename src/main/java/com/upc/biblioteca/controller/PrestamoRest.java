@@ -38,6 +38,7 @@ public class PrestamoRest {
     @GetMapping("/prestamo/usuario/{documentoIdentidad}")
     public ResponseEntity<?> obtenerPrestamosPorDocumento(@PathVariable String documentoIdentidad) {
         try {
+            prestamoNegocio.actualizarEstadoPrestamos();
             List<PrestamoDto> prestamos = prestamoNegocio.obtenerPrestamosPorDocumento(documentoIdentidad);
             return ResponseEntity.ok(prestamos);
         } catch (Exception e) {

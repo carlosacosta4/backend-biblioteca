@@ -10,5 +10,5 @@ public interface IPrestamoNegocio {
                                         LocalDate fechaPrestamo, LocalDate fechaDevolucion) throws Exception;
 
     List<PrestamoDto> obtenerPrestamosPorDocumento(String documentoIdentidad) throws Exception;
-
+    void actualizarEstadoPrestamos();
 }
