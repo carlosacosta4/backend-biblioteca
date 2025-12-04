@@ -1,5 +1,6 @@
 package com.upc.biblioteca.controller;
 
+import com.upc.biblioteca.dto.ErrorDto;
 import com.upc.biblioteca.dto.PrestamoDto;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,9 +32,11 @@ public class PrestamoRest {
             );
             return ResponseEntity.status(HttpStatus.CREATED).body(saved);
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+            ErrorDto error = new ErrorDto("Error al crear el préstamo", e.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
         }
     }
+
 
     @GetMapping("/prestamo/usuario/{documentoIdentidad}")
     public ResponseEntity<?> obtenerPrestamosPorDocumento(@PathVariable String documentoIdentidad) {
