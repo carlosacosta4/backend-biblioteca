@@ -21,17 +21,16 @@ INSERT INTO tbl_usuario (nombres, apellidos, correo_electronico, contrasenia, do
 -- Autores
 INSERT INTO tbl_autor (nombre_autor, apellido_autor, biografia_autor) VALUES
     ('Mario', 'Vargas Llosa', 'Escritor peruano, ganador del Premio Nobel de Literatura.'),
-    ('Ciro', 'Alegría', 'Escritor peruano, autor de "El mundo es ancho y ajeno".'),
-    ('José María', 'Arguedas', 'Escritor peruano, conocido por "Los ríos profundos".'),
-    ('Gabriel', 'García Márquez', 'Escritor colombiano, autor de "Cien años de soledad".'),
-    ('Isabel', 'Allende', 'Escritora chilena, conocida por "La casa de los espíritus".'),
+    ('Ciro', 'Alegría', 'Escritor peruano, autor de El mundo es ancho y ajeno.'),
+    ('José María', 'Arguedas', 'Escritor peruano, conocido por Los ríos profundos.'),
+    ('Gabriel', 'García Márquez', 'Escritor colombiano, autor de Cien años de soledad.'),
+    ('Isabel', 'Allende', 'Escritora chilena, conocida por La casa de los espíritus.'),
     ('Jorge Luis', 'Borges', 'Escritor argentino, maestro del cuento y la poesía.'),
     ('Julio', 'Cortázar', 'Escritor argentino, autor de "Rayuela".'),
-    ('César', 'Vallejo', 'Poeta peruano, autor de "Los heraldos negros".'),
-    ('Ricardo', 'Palma', 'Escritor peruano, conocido por "Tradiciones Peruanas".'),
-    ('Clorinda', 'Matto de Turner', 'Escritora peruana, autora de "Aves sin nido".');
+    ('César', 'Vallejo', 'Poeta peruano, autor de Los heraldos negros.'),
+    ('Ricardo', 'Palma', 'Escritor peruano, conocido por Tradiciones Peruanas.'),
+    ('Clorinda', 'Matto de Turner', 'Escritora peruana, autora de Aves sin nido.');
 
--- Libros
 -- Libros
 INSERT INTO tbl_libro (titulo_libro, anio_publicacion_libro, cantidad_libro, editorial_libro, genero_libro, isbn_libro, nro_paginas_libro, ruta_imagen_libro, sinopsis_libro, id_autor) VALUES
     ('Cien años de soledad', 1967, 10, 'Editorial Sudamericana', 'Realismo mágico', '978-0060883287', 417, '/imagenes/cien_anos_de_soledad.jpg', 'Una obra maestra que narra la historia de la familia Buendía.', 4),
@@ -53,10 +52,13 @@ INSERT INTO tbl_libro (titulo_libro, anio_publicacion_libro, cantidad_libro, edi
     ('Tradiciones en salsa verde', 1899, 5, 'Editorial Universo', 'Tradiciones', '978-9876545678', 300, '/imagenes/tradiciones_salsa_verde.jpg', 'Relatos humorísticos que complementan las Tradiciones Peruanas.', 9),
     ('Índole', 1891, 3, 'Editorial Universo', 'Novela social', '978-9876548765', 280, '/imagenes/indole.jpg', 'Una novela que aborda las problemáticas sociales del Perú.', 10);
 
---INSERT INTO tbl_prestamo (estado, fecha_devolucion, fecha_prestamo, id_libro, id_usuario) VALUES
---('PENDIENTE', '2024-07-10', '2024-06-10', 1, 2),
---('DEVUELTO', '2024-06-15', '2024-05-15', 3, 3),
---('PENDIENTE', '2024-07-20', '2024-06-20', 5, 2),
---('DEVUELTO', '2024-06-05', '2024-05-05', 2, 3),
---('PENDIENTE', '2024-07-25', '2024-06-25', 4, 2);
+INSERT INTO tbl_prestamo (estado, fecha_devolucion, fecha_prestamo, id_libro, id_usuario) VALUES
+    ('ACTIVO', '2025-12-15', '2025-12-10', 1, 2),
+    ('ACTIVO', '2025-12-20', '2025-11-28', 2, 3),
+    ('VENCIDO', '2025-12-3', '2025-11-20', 3, 2),
+    ('DEVUELTO', '2025-11-20', '2025-11-10', 4, 3),
+    ('DEVUELTO', '2025-11-10', '2025-10-28', 5, 2),
+    ('ACTIVO', '2025-12-2', '2025-11-28', 2, 3);
+
+
 
