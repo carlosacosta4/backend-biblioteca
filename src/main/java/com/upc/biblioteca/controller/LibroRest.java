@@ -1,7 +1,8 @@
 package com.upc.biblioteca.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.upc.biblioteca.dto.LibroDto;
+import com.upc.biblioteca.dto.ErrorDto;
+import com.upc.biblioteca.dto.LibroDetalleDto;
 import com.upc.biblioteca.dto.LibroListDto;
 import com.upc.biblioteca.entity.Libro;
 import com.upc.biblioteca.service.impl.FileService;
@@ -49,15 +50,15 @@ public class LibroRest {
         }
     }
 
-    @GetMapping("/libro/isbn/{isbnLibro}")
-    public ResponseEntity<LibroDto> obtenerPorIsbn(@PathVariable String isbnLibro) {
-        Libro libro = lbLibroNegocio.buscarPorIsbn(isbnLibro);
-        if (libro == null) {
-            return ResponseEntity.notFound().build();
+    @GetMapping("/libros/buscar")
+    public ResponseEntity<?> buscarLibros(@RequestParam String titulo) {
+        List<Libro> libros = lbLibroNegocio.buscarPorTitulo(titulo);
+        if (libros.isEmpty()) {
+            return ResponseEntity.status(404).body(new ErrorDto("Libro no encontrado", "No se encontraron libros con el término proporcionado."));
         }
-        LibroDto dto = new LibroDto(libro.getIsbnLibro(), libro.getTituloLibro(), libro.getAutor());
-        return ResponseEntity.ok(dto);
+        return ResponseEntity.ok(libros);
     }
+
 
     @GetMapping("/libros/catalogo")
     public ResponseEntity<List<LibroListDto>> listarLibros() {
@@ -77,4 +78,28 @@ public class LibroRest {
     private String safeTrim(String s) {
         return s == null ? "" : s.trim();
     }
+
+    @GetMapping("/libro/detalle/{isbnLibro}")
+    public ResponseEntity<LibroDetalleDto> obtenerDetallePorIsbn(@PathVariable String isbnLibro) {
+        Libro libro = lbLibroNegocio.buscarPorIsbn(isbnLibro);
+        if (libro == null) {
+            return ResponseEntity.notFound().build();
+        }
+        LibroDetalleDto detalleDto = new LibroDetalleDto(
+                libro.getIsbnLibro(),
+                libro.getTituloLibro(),
+                libro.getAutor() != null
+                        ? libro.getAutor().getNombreAutor() + " " + libro.getAutor().getApellidoAutor()
+                        : null,
+                libro.getRutaImagenLibro(),
+                libro.getEditorialLibro(),
+                libro.getAnioPublicacionLibro(),
+                libro.getNroPaginasLibro(),
+                libro.getSinopsisLibro(),
+                libro.getGeneroLibro(),
+                libro.getCantidadLibro()
+        );
+        return ResponseEntity.ok(detalleDto);
+    }
+
 }

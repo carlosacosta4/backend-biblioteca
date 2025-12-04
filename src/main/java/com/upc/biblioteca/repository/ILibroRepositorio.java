@@ -9,5 +9,6 @@ import java.util.Optional;
 
 public interface ILibroRepositorio extends JpaRepository<Libro, Long> {
     Optional<Libro> findByIsbnLibro(String isbnLibro);
+    List<Libro> findByTituloLibroContainingIgnoreCase(String titulo);
 }
 

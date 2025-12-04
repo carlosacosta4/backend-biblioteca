@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class LibroNegocio implements ILibroNegocio {
@@ -27,5 +28,10 @@ public class LibroNegocio implements ILibroNegocio {
     @Override
     public Libro buscarPorIsbn(String isbnLibro) {
         return repositorio.findByIsbnLibro(isbnLibro).orElse(null);
+    }
+
+    @Override
+    public List<Libro> buscarPorTitulo(String titulo) {
+        return repositorio.findByTituloLibroContainingIgnoreCase(titulo); // Implementación
     }
 }

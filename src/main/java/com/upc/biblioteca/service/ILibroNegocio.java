@@ -8,5 +8,7 @@ public interface ILibroNegocio {
 
     public List<Libro> listar();
     public Libro registrar(Libro libro);
+
     Libro buscarPorIsbn(String isbnLibro);
+    List<Libro> buscarPorTitulo(String titulo);
 }
