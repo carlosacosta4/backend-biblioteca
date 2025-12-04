@@ -43,9 +43,10 @@ public class DataInitializer implements CommandLineRunner {
         int autores = jdbcTemplate.queryForObject("SELECT COUNT(*) FROM tbl_autor", Integer.class);
         int libros = jdbcTemplate.queryForObject("SELECT COUNT(*) FROM tbl_libro", Integer.class);
         int prestamos = jdbcTemplate.queryForObject("SELECT COUNT(*) FROM tbl_prestamo", Integer.class);
+        int reservas = jdbcTemplate.queryForObject("SELECT COUNT(*) FROM tbl_reserva", Integer.class);
 
 
-        System.out.println("Conteos - Roles: " + roles + ", Usuarios: " + usuarios + ", Autores: " + autores + ", Libros: " + libros + ", Prestamos: " + prestamos);
-        return roles > 0 || usuarios > 0 || autores > 0 || libros > 0 || prestamos > 0;
+        System.out.println("Conteos - Roles: " + roles + ", Usuarios: " + usuarios + ", Autores: " + autores + ", Libros: " + libros + ", Prestamos: " + prestamos +", Reservas: " + reservas);
+        return roles > 0 || usuarios > 0 || autores > 0 || libros > 0 || prestamos > 0 || reservas > 0;
     }
 }
