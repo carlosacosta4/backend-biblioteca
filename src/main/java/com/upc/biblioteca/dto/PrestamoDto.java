@@ -1,6 +1,6 @@
 package com.upc.biblioteca.dto;
 
-import com.upc.biblioteca.enums.PrestamoEstado;
+import com.upc.biblioteca.enums.LibroEstado;
 import java.time.LocalDate;
 
 public record PrestamoDto(
@@ -9,6 +9,6 @@ public record PrestamoDto(
     String tituloLibro,
     LocalDate fechaPrestamo,
     LocalDate fechaDevolucion,
-    PrestamoEstado estado
+    LibroEstado estado
 ) {}
 

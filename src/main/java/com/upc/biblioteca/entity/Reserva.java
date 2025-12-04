@@ -3,19 +3,18 @@ package com.upc.biblioteca.entity;
 import com.upc.biblioteca.enums.LibroEstado;
 import jakarta.persistence.*;
 import lombok.*;
-import java.time.LocalDate;
 
 @Entity
-@Table(name = "tbl_prestamo")
+@Table(name = "tbl_reserva")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Prestamo {
+public class Reserva {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idPrestamo;
+    private Long idReserva;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id_usuario")
@@ -25,11 +24,6 @@ public class Prestamo {
     @JoinColumn(name = "id_libro")
     private Libro libro;
 
-    private LocalDate fechaPrestamo;
-
-    private LocalDate fechaDevolucion;
-
     @Enumerated(EnumType.STRING)
     private LibroEstado estado;
-
 }
