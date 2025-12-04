@@ -1,5 +1,6 @@
 package com.upc.biblioteca.controller;
 
+import com.upc.biblioteca.dto.ErrorDto;
 import com.upc.biblioteca.dto.LoginRequestDto;
 import com.upc.biblioteca.dto.LoginResponseDto;
 import com.upc.biblioteca.dto.UsuarioDto;
@@ -34,18 +35,17 @@ public class UsuarioRest {
         }
     }
 
-    @GetMapping("/usuario/documento/{documentoIdentidad}")
-    public ResponseEntity<UsuarioDto> obtenerPorDocumento(@PathVariable String documentoIdentidad) {
-        try {
-            Usuario usuario = lbUsuarioNegocio.buscarPorDocumentoIdentidad(documentoIdentidad);
-            if (usuario == null) {
-                return ResponseEntity.notFound().build();
-            }
-            UsuarioDto dto = new UsuarioDto(usuario.getDocumentoIdentidad(), usuario.getNombres());
-            return ResponseEntity.ok(dto);
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+    @GetMapping("/usuarios/buscar")
+    public ResponseEntity<?> buscarUsuarios(@RequestParam String termino) {
+        List<Usuario> usuarios = lbUsuarioNegocio.buscarUsuarios(termino);
+        if (usuarios.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(new ErrorDto("Usuario no encontrado", "No se encontraron usuarios con el término proporcionado."));
         }
+        List<UsuarioDto> dtos = usuarios.stream()
+                .map(u -> new UsuarioDto(u.getDocumentoIdentidad(), u.getNombres(), u.getApellidos()))
+                .toList();
+        return ResponseEntity.ok(dtos);
     }
 
     @PostMapping("/login")

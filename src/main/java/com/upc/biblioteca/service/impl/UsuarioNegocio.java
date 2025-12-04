@@ -36,6 +36,11 @@ public class UsuarioNegocio implements IUsuarioNegocio {
     }
 
     @Override
+    public List<Usuario> buscarUsuarios(String termino) {
+        return repositorio.findByNombresContainingIgnoreCaseOrCorreoElectronicoContainingIgnoreCase(termino, termino);
+    }
+
+    @Override
     public LoginResponseDto login(String correo, String password) {
 
         Header encabezado = new Header();

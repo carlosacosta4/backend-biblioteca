@@ -10,5 +10,6 @@ public interface IUsuarioNegocio {
     public List<Usuario> listar();
     public Usuario registrar(Usuario usuario);
     Usuario buscarPorDocumentoIdentidad(String documentoIdentidad);
+    List<Usuario> buscarUsuarios(String termino);
     public LoginResponseDto login(String correo, String password);
 }

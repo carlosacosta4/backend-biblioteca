@@ -10,4 +10,5 @@ import lombok.*;
 public class UsuarioDto {
     private String documento;
     private String nombre;
+    private String apellido;
 }
