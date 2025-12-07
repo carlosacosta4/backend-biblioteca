@@ -33,7 +33,7 @@ INSERT INTO tbl_autor (nombre_autor, apellido_autor, biografia_autor) VALUES
 
 -- Libros
 INSERT INTO tbl_libro (titulo_libro, anio_publicacion_libro, cantidad_libro, editorial_libro, genero_libro, isbn_libro, nro_paginas_libro, ruta_imagen_libro, sinopsis_libro, id_autor) VALUES
-    ('Cien años de soledad', 1967, 10, 'Editorial Sudamericana', 'Realismo mágico', '978-0060883287', 417, '/imagenes/cien_anos_de_soledad.webp', 'Una obra maestra que narra la historia de la familia Buendía.', 4),
+    ('Cien años de soledad', 1967, 10, 'Editorial Sudamericana', 'Realismo mágico', '978-0060883287', 417, '/imagenes/cien_anios_de_soledad.webp', 'Una obra maestra que narra la historia de la familia Buendía.', 4),
     ('La casa de los espíritus', 1982, 8, 'Editorial Plaza & Janés', 'Realismo mágico', '978-0553383805', 448, '/imagenes/la_casa_de_los_espiritus.webp', 'Una saga familiar que mezcla lo real y lo sobrenatural.', 5),
     ('Rayuela', 1963, 5, 'Editorial Sudamericana', 'Ficción', '978-8435008880', 736, '/imagenes/rayuela.webp', 'Una novela experimental que invita al lector a elegir su propio camino.', 7),
     ('El mundo es ancho y ajeno', 1941, 7, 'Editorial Losada', 'Novela social', '978-8420635748', 600, '/imagenes/el_mundo_es_ancho_ajeno.webp', 'Una obra que retrata la vida de los campesinos peruanos.', 2),
