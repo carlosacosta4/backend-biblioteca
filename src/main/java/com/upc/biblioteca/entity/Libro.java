@@ -26,7 +26,8 @@ public class Libro {
     @Column(length = 200)
     private String anioPublicacionLibro;
     private Long nroPaginasLibro;
-    @Column(length = 300)
+
+    @Column(name = "sinopsis_libro", columnDefinition = "text")
     private String sinopsisLibro;
     @Column(length = 300)
     private String generoLibro;
