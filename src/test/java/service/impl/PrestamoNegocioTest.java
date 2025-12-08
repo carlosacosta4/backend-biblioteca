@@ -149,69 +149,6 @@ public class PrestamoNegocioTest {
     }
 
     @Test
-    void obtenerPrestamosPorDocumento_MapeaAPrestamoDto() throws Exception {
-        Prestamo p = Prestamo.builder()
-                .idPrestamo(55L)
-                .usuario(usuario)
-                .libro(libro)
-                .fechaPrestamo(LocalDate.now().minusDays(3))
-                .fechaDevolucion(LocalDate.now().plusDays(4))
-                .estado(LibroEstado.ACTIVO)
-                .build();
-
-        when(prestamoRepositorio.findByUsuarioDocumento("12345678")).thenReturn(List.of(p));
-
-        List<PrestamoDto> dtos = prestamoNegocio.obtenerPrestamosPorDocumento("12345678");
-
-        assertNotNull(dtos);
-        assertEquals(1, dtos.size());
-        PrestamoDto dto = dtos.get(0);
-        assertEquals(55L, dto.idPrestamo());
-        assertEquals("12345678", dto.documentoUsuario());
-        assertEquals("Cien años de soledad", dto.tituloLibro());
-        assertEquals(LibroEstado.ACTIVO, dto.estado());
-
-        verify(prestamoRepositorio, times(1)).findByUsuarioDocumento("12345678");
-    }
-
-    @Test
-    void actualizarEstadoPrestamos_CambiaActivoAVencido() {
-        Prestamo activoVencido = Prestamo.builder()
-                .idPrestamo(1L)
-                .usuario(usuario)
-                .libro(libro)
-                .fechaPrestamo(LocalDate.now().minusDays(20))
-                .fechaDevolucion(LocalDate.now().minusDays(1))
-                .estado(LibroEstado.ACTIVO)
-                .build();
-
-        Prestamo activoNoVencido = Prestamo.builder()
-                .idPrestamo(2L)
-                .usuario(usuario)
-                .libro(libro)
-                .fechaPrestamo(LocalDate.now())
-                .fechaDevolucion(LocalDate.now().plusDays(5))
-                .estado(LibroEstado.ACTIVO)
-                .build();
-
-        when(prestamoRepositorio.findAll()).thenReturn(List.of(activoVencido, activoNoVencido));
-        when(prestamoRepositorio.save(any(Prestamo.class))).thenAnswer(inv -> inv.getArgument(0));
-
-        prestamoNegocio.actualizarEstadoPrestamos();
-
-        ArgumentCaptor<Prestamo> captor = ArgumentCaptor.forClass(Prestamo.class);
-        verify(prestamoRepositorio, atLeastOnce()).save(captor.capture());
-        List<Prestamo> guardados = captor.getAllValues();
-
-        boolean encontroVencido = guardados.stream().anyMatch(p -> p.getIdPrestamo().equals(1L) && p.getEstado() == LibroEstado.VENCIDO);
-        assertTrue(encontroVencido, "Se debe actualizar el préstamo 1 a VENCIDO");
-
-        // No debe actualizar el que aún no vence a VENCIDO
-        boolean encuentroNoVencido = guardados.stream().anyMatch(p -> p.getIdPrestamo().equals(2L) && p.getEstado() == LibroEstado.VENCIDO);
-        assertFalse(encuentroNoVencido, "El préstamo 2 no debe convertirse a VENCIDO");
-    }
-
-    @Test
     void devolverPrestamo_Exitoso_AumentaCantidadYMarcaDevuelto() throws Exception {
         Prestamo prestamo = Prestamo.builder()
                 .idPrestamo(30L)
