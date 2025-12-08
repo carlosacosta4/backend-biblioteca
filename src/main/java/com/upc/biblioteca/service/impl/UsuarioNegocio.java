@@ -66,6 +66,7 @@ public class UsuarioNegocio implements IUsuarioNegocio {
         loginResponseDto.setToken(token);
         loginResponseDto.setNombres(usuario.getNombres());
         loginResponseDto.setApellidos(usuario.getApellidos());
+        loginResponseDto.setDocumentoIdentidad(usuario.getDocumentoIdentidad());
         loginResponseDto.setRol(usuario.getRol());
 
 
