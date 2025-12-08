@@ -33,7 +33,6 @@ public class PrestamoNegocio implements IPrestamoNegocio {
     @Autowired
     private ILibroRepositorio libroRepositorio;
 
-    // src/main/java/com/upc/biblioteca/service/impl/PrestamoNegocio.java
     @Override
     public Prestamo registrarPorDocumentoEIsbn(String documentoIdentidad, String isbnLibro,
                                                LocalDate fechaPrestamo, LocalDate fechaDevolucion) throws Exception {

@@ -1,15 +1,15 @@
 package com.upc.biblioteca.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
 @Table(name="tbl_libro")
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Libro {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
