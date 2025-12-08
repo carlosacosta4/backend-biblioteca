@@ -16,6 +16,7 @@ public class LoginResponseDto {
     private String token;
     private String nombres;
     private String apellidos;
+    private String documentoIdentidad;
     private Rol rol;
 
 

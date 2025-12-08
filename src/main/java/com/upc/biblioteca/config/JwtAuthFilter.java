@@ -34,7 +34,15 @@ public class JwtAuthFilter extends OncePerRequestFilter {
         String method = request.getMethod();
 
         // Permitir preflight y login sin procesar el JWT
-        if ("OPTIONS".equalsIgnoreCase(method) || path.equals("/api/login") || path.startsWith("/api/public")) {
+
+
+        if ("OPTIONS".equalsIgnoreCase(method) ||
+                path.equals("/api/login") ||
+                path.startsWith("/api/public") ||
+                path.startsWith("/uploads") ||
+                path.startsWith("/api/uploads")) {
+
+            addCorsHeaders(response); // <-- MUY IMPORTANTE
             filterChain.doFilter(request, response);
             return;
         }
