@@ -22,6 +22,13 @@ public class LibroNegocio implements ILibroNegocio {
 
     @Override
     public Libro registrar(Libro libro) {
+
+        Libro existente = repositorio.findByIsbnLibro(libro.getIsbnLibro()).orElse(null);
+
+        if (existente != null) {
+            throw new RuntimeException("El ISBN ya existe");
+        }
+
         return repositorio.save(libro);
     }
 

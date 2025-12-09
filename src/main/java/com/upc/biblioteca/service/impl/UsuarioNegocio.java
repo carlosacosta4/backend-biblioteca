@@ -1,6 +1,7 @@
 package com.upc.biblioteca.service.impl;
 
 import com.upc.biblioteca.dto.LoginResponseDto;
+import com.upc.biblioteca.entity.Libro;
 import com.upc.biblioteca.entity.Usuario;
 import com.upc.biblioteca.repository.IUsuarioRepositorio;
 import com.upc.biblioteca.service.IUsuarioNegocio;
@@ -27,6 +28,18 @@ public class UsuarioNegocio implements IUsuarioNegocio {
 
     @Override
     public Usuario registrar(Usuario usuario) {
+
+        Usuario existenteDocumentoIdentidad = repositorio.findByDocumentoIdentidad(usuario.getDocumentoIdentidad()).orElse(null);
+        Usuario existenteCorreo = repositorio.findByCorreoElectronico(usuario.getCorreoElectronico());
+
+        if (existenteDocumentoIdentidad != null) {
+            throw new RuntimeException("El documento de identidad ya existe");
+        }
+
+        if (existenteCorreo != null) {
+            throw new RuntimeException("El correo electrónico ya existe");
+        }
+
         return repositorio.save(usuario);
     }
 

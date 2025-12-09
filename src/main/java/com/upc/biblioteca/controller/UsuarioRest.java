@@ -4,12 +4,14 @@ import com.upc.biblioteca.dto.ErrorDto;
 import com.upc.biblioteca.dto.LoginRequestDto;
 import com.upc.biblioteca.dto.LoginResponseDto;
 import com.upc.biblioteca.dto.UsuarioDto;
+import com.upc.biblioteca.entity.Libro;
 import com.upc.biblioteca.entity.Usuario;
 import com.upc.biblioteca.service.IUsuarioNegocio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -26,14 +28,26 @@ public class UsuarioRest {
     }
 
     @PostMapping("/usuario")
-    public void crearLibro(@RequestBody Usuario usuario) {
+    public ResponseEntity<?> crearUsuario(@RequestBody Usuario usuario) {
         Usuario lb;
         try{
-            lb = lbUsuarioNegocio.registrar(usuario);
+
+            Usuario saved = lbUsuarioNegocio.registrar(usuario);
+
+            return ResponseEntity.status(HttpStatus.CREATED).body(saved);
+
+        } catch (RuntimeException e) {
+            // Error de negocio (ISBN duplicado)
+            return ResponseEntity.status(HttpStatus.CONFLICT)
+                    .body(new ErrorDto("Error de validación", e.getMessage()));
         } catch (Exception e){
-            e.printStackTrace();
+            ErrorDto error = new ErrorDto("Error al crear el usuario", e.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
         }
     }
+
+
+
 
     @GetMapping("/usuarios/buscar")
     public ResponseEntity<?> buscarUsuarios(@RequestParam String termino) {

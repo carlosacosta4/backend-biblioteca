@@ -4,10 +4,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.upc.biblioteca.dto.ErrorDto;
 import com.upc.biblioteca.dto.LibroDetalleDto;
 import com.upc.biblioteca.dto.LibroListDto;
+import com.upc.biblioteca.dto.PrestamoRequestDto;
 import com.upc.biblioteca.entity.Libro;
+import com.upc.biblioteca.entity.Prestamo;
 import com.upc.biblioteca.service.impl.FileService;
 import com.upc.biblioteca.service.ILibroNegocio;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -32,21 +35,26 @@ public class LibroRest {
     }
 
     @PostMapping(value = "/libro", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public void crearLibro( @RequestPart("file") MultipartFile file,
-                            @RequestPart("libro") String libroRequest) {
+    public ResponseEntity<?> crearLibro( @RequestPart("file") MultipartFile file,
+                            @ModelAttribute Libro libro) {
         Libro lb;
         try{
-
-            ObjectMapper mapper = new ObjectMapper();
-            Libro libro = mapper.readValue(libroRequest, Libro.class);
 
             String rutaImagen = lbFileService.guardarImagen(file);
 
             libro.setRutaImagenLibro(rutaImagen);
 
-            lb = lbLibroNegocio.registrar(libro);
+            Libro saved = lbLibroNegocio.registrar(libro);
+
+            return ResponseEntity.status(HttpStatus.CREATED).body(saved);
+
+        } catch (RuntimeException e) {
+            // Error de negocio (ISBN duplicado)
+            return ResponseEntity.status(HttpStatus.CONFLICT)
+                    .body(new ErrorDto("Error de validación", e.getMessage()));
         } catch (Exception e){
-            e.printStackTrace();
+            ErrorDto error = new ErrorDto("Error al crear el libro", e.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
         }
     }
 
